@@ -9,6 +9,7 @@
 
 ## database schema
 table user:
+
     create table user(
         id int unsigned auto_increment,
         name varchar(128) not null,
@@ -17,3 +18,5 @@ table user:
         roles varchar(128) not null,
         primary key(id))
         engine=InnoDB default charset=utf8;
+        
+        
