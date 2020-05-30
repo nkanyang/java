@@ -9,11 +9,11 @@
 
 ## database schema
 table user:
-create table user(
-    id int unsigned auto_increment,
-    name varchar(128) not null,
-    password varchar(128) not null,
-    active tinyint(1) not null,
-    roles varchar(128) not null,
-    primary key(id))
-    engine=InnoDB default charset=utf8;
+    create table user(
+        id int unsigned auto_increment,
+        name varchar(128) not null,
+        password varchar(128) not null,
+        active tinyint(1) not null,
+        roles varchar(128) not null,
+        primary key(id))
+        engine=InnoDB default charset=utf8;
