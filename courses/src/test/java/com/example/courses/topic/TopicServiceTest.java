@@ -2,9 +2,6 @@ package com.example.courses.topic;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +20,6 @@ public class TopicServiceTest {
 
     @MockBean
     private TopicRepository topicRepository;
-
-    @BeforeEach
-    public void init(){
-
-    }
 
     @Test
     public void testGetAllTopics(){
