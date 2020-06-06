@@ -3,7 +3,7 @@
 - "/admin": Resource can only be accessed only by user with role admin
 - "/user": Resource can only be accessed only by user with role admin and user
 - "/signup": Resource can be accessed only by every user,support GET and POST(have csrf disabled)
--- POST:{"username":"user","password":"pass"}
+-- POST:{"name":"user","password":"pass"}
 - "/": Resource can be accessed only by every user
 
 
