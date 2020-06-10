@@ -20,3 +20,15 @@ table user:
         engine=InnoDB default charset=utf8;
         
         
+## MySQL start (in docker)
+- Start docker image:
+    
+    `docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql`
+
+- login container
+
+    `docker exec -it mysql-test bash`
+
+- login mysql
+
+    `Mysql -u root -p password`
