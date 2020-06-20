@@ -31,4 +31,4 @@ table user:
 
 - login mysql
 
-    `Mysql -u root -p password`
+    `mysql -u root -p`
