@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/todolist")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class TodoListController {
     @Autowired
     private TodoListService todoListService;
