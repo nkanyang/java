@@ -1,33 +1,50 @@
 package com.codetest.toyrobot.game;
 
-public class Direction {
-    public static final int NORTH = 0;
-    public static final int EAST = 1;
-    public static final int SOUTH = 2;
-    public static final int WEST = 3;
-    public static final int NUMBER_OF_DIRECTIONS = 4;
-    private static final String[] DIRECTIONS = {"NORTH", "EAST", "SOUTH", "WEST"};
+public enum Direction {
+    NORTH("WEST", "EAST"){
+        @Override
+        public Position getNextPosition(Position current){
+            return new Position(current.getX(),current.getY() + 1);
+        }
+    },
+    EAST("NORTH", "SOUTH"){
+        @Override
+        public Position getNextPosition(Position current){
+            return new Position(current.getX() + 1,current.getY());
+        }
+    },
+    SOUTH("EAST", "WEST"){
+        @Override
+        public Position getNextPosition(Position current){
+            return new Position(current.getX(),current.getY() - 1);
+        }
+    },
+    WEST("SOUTH", "NORTH"){
+        @Override
+        public Position getNextPosition(Position current){
+            return new Position(current.getX() -1 ,current.getY());
+        }
+    };
 
-    private int directionIndex;
+    private String left;
+    private String right;
 
-    public Direction(int direction) {
-        this.directionIndex = direction;
+    Direction(String left, String right) {
+        this.left = left;
+        this.right = right;
     }
 
-    public void turnLeft() {
-        directionIndex = (directionIndex + 3) % NUMBER_OF_DIRECTIONS;
+    public Direction getLeft(){
+        return valueOf(this.left);
     }
 
-    public void turnRight() {
-        directionIndex = (directionIndex + 1) % NUMBER_OF_DIRECTIONS;
+    public Direction getRight(){
+        return valueOf(this.right);
     }
 
-    public int getDirection() {
-        return this.directionIndex;
-    }
-
-    @Override
-    public String toString() {
-        return DIRECTIONS[directionIndex];
-    }
+    /**
+     * Returns the next position in this direction based on the current position
+     */
+    public abstract Position getNextPosition(Position current);
 }
+

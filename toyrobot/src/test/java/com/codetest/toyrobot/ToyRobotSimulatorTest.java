@@ -1,7 +1,6 @@
-package com.codetest.toyrobot.it;
+package com.codetest.toyrobot;
 
 import com.codetest.toyrobot.ToyRobotSimulator;
-import com.codetest.toyrobot.logger.RobotLogger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,6 @@ public class ToyRobotSimulatorTest {
     public void setUpOutput() {
         testOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(testOut));
-        RobotLogger.disableDetails();
     }
 
     @AfterEach
