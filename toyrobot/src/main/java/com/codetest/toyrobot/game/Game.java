@@ -3,10 +3,10 @@ package com.codetest.toyrobot.game;
 import com.codetest.toyrobot.command.Command;
 import com.codetest.toyrobot.exceptions.RobotException;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class Game {
-    private final Logger logger = Logger.getLogger(Game.class.getName());
+    final static Logger logger = Logger.getLogger(Game.class.getName());
     private final Board board;
     private Robot robot;
 
@@ -23,9 +23,9 @@ public class Game {
     public void executeCommand(Command command){
         try{
             command.execute(this.robot, this.board);
-            logger.info(command.toString());
+            logger.info(command.toString() + ": Command executed successfully.");
         }catch (RobotException e){
-            logger.warning(e.message());
+            logger.error(e.message());
         }
     }
 }

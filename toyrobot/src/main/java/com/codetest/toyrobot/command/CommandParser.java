@@ -1,9 +1,13 @@
 package com.codetest.toyrobot.command;
 
 import com.codetest.toyrobot.game.Direction;
+import com.codetest.toyrobot.game.Game;
 import com.codetest.toyrobot.game.Position;
+import org.apache.log4j.Logger;
 
 public class CommandParser {
+    final static Logger logger = Logger.getLogger(CommandParser.class.getName());
+
     /**
      * Parse the String given by argument and return an object of Command
      * <p>
@@ -40,8 +44,8 @@ public class CommandParser {
         }
     }
 
-    public PlaceCommand buildPlaceCommand(String input){
-        if(input == null){
+    public PlaceCommand buildPlaceCommand(String input) {
+        if (input == null) {
             return null;
         }
         String[] arguments = input.split(",");
@@ -52,9 +56,9 @@ public class CommandParser {
             int x = Integer.parseInt(arguments[0]);
             int y = Integer.parseInt(arguments[1]);
             Direction direction = Direction.valueOf(arguments[2]);
-            return new PlaceCommand(new Position(x,y), direction);
-        }catch (Exception e){
-            //todo: logger the exception
+            return new PlaceCommand(new Position(x, y), direction);
+        } catch (Exception e) {
+            logger.error(e.toString());
         }
         return null;
     }

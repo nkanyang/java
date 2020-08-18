@@ -3,17 +3,17 @@ package com.codetest.toyrobot;
 import com.codetest.toyrobot.command.Command;
 import com.codetest.toyrobot.command.CommandParser;
 import com.codetest.toyrobot.game.Game;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ToyRobotSimulator {
-    private final static Logger rootLogger = Logger.getLogger("");
+    final static org.apache.log4j.Logger logger = Logger.getRootLogger();
 
     public static void main(String[] args) {
         if (args.length != 1 && args.length != 2) {
@@ -38,15 +38,21 @@ public class ToyRobotSimulator {
             BufferedReader br = new BufferedReader(commandFile);
             CommandParser commandParser = new CommandParser();
 
+            logger.info("Begin parsing commands from file " + fileName);
             List<Command> commands = new ArrayList<>();
             String line;
             while ((line = br.readLine()) != null) {
                 Command command = commandParser.buildFromString(line);
-                if (command != null) {
-                    commands.add(command);
+                if (command == null) {
+                    logger.error(line + " is not a valid command.Skipped");
+                    continue;
                 }
+                logger.info(line + " is parsed successfully.");
+                commands.add(command);
             }
+            logger.info("Done parsing commands.");
 
+            logger.info("Start game, execute all commands ...");
             Game toyRobot = new Game(5, 5);
             commands.forEach(toyRobot::executeCommand);
         } catch (IOException e) {
@@ -56,11 +62,11 @@ public class ToyRobotSimulator {
     }
 
     public static void disableLogging() {
-        rootLogger.setLevel(Level.OFF);
+        logger.setLevel(Level.OFF);
     }
 
     public static void enableLogging() {
-        rootLogger.setLevel(Level.ALL);
+        logger.setLevel(Level.ALL);
     }
 
     public static void showHelpInfo() {

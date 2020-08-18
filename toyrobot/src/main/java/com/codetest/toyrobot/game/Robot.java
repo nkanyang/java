@@ -25,8 +25,30 @@ public class Robot {
         return this.position + "," + this.direction;
     }
 
+    /**
+     * Returns the next position based on current position(x,y) and current direction
+     */
     public Position getNextPosition() {
-        return this.direction.getNextPosition(this.position);
+        int nextX = this.position.getX();
+        int nextY = this.position.getY();
+
+        switch (this.direction) {
+            case NORTH:
+                nextY++;
+                break;
+            case EAST:
+                nextX++;
+                break;
+            case SOUTH:
+                nextY--;
+                break;
+            case WEST:
+                nextX--;
+                break;
+            default:
+                throw new IllegalStateException("Direction unknown" + this.direction);
+        }
+        return new Position(nextX, nextY);
     }
 
     public boolean isOnBoard() {

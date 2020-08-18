@@ -5,17 +5,19 @@ import com.codetest.toyrobot.exceptions.RobotNotOnBoardException;
 import com.codetest.toyrobot.game.Board;
 import com.codetest.toyrobot.game.Robot;
 
-public class LeftCommand implements Command{
+public class LeftCommand implements Command {
     private String command = "LEFT";
+
     @Override
     public void execute(Robot robot, Board board) throws RobotException {
-        if(!robot.isOnBoard()){
+        if (!robot.isOnBoard()) {
             throw new RobotNotOnBoardException(command);
         }
         robot.turnLeft();
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.command;
     }
 }
