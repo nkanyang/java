@@ -6,8 +6,8 @@ public enum Direction {
     SOUTH("EAST", "WEST"),
     WEST("SOUTH", "NORTH");
 
-    private String left;
-    private String right;
+    private final String left;
+    private final String right;
 
     Direction(String left, String right) {
         this.left = left;

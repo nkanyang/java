@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 public class Game {
     final static Logger logger = Logger.getLogger(Game.class.getName());
     private final Board board;
-    private Robot robot;
+    private final Robot robot;
 
     public Game(int rows, int columns) {
         this.board = new Board(rows, columns);

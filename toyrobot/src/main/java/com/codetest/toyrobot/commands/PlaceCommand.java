@@ -8,9 +8,9 @@ import com.codetest.toyrobot.game.Position;
 import com.codetest.toyrobot.game.Robot;
 
 public class PlaceCommand implements Command {
-    private String command = "PLACE";
-    private Position position;
-    private Direction direction;
+    private final String command = "PLACE";
+    private final Position position;
+    private final Direction direction;
 
     public PlaceCommand(Position position, Direction direction) {
         this.position = position;

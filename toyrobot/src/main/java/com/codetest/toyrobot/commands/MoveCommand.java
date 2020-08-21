@@ -8,7 +8,7 @@ import com.codetest.toyrobot.game.Position;
 import com.codetest.toyrobot.game.Robot;
 
 public class MoveCommand implements Command {
-    private String command = "MOVE";
+    private final String command = "MOVE";
 
     @Override
     public void execute(Robot robot, Board board) throws RobotException {

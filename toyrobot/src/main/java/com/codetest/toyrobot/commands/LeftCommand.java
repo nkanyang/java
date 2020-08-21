@@ -6,7 +6,7 @@ import com.codetest.toyrobot.game.Board;
 import com.codetest.toyrobot.game.Robot;
 
 public class LeftCommand implements Command {
-    private String command = "LEFT";
+    private final String command = "LEFT";
 
     @Override
     public void execute(Robot robot, Board board) throws RobotException {
