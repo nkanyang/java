@@ -4,7 +4,7 @@ Toy Robot Simulator
 Problem Description
 -----------
 - A simple app simulating a toy robot moving on a tabletop of 5 units x 5 units.
-- For more detaild information about the problem please check PROBLEM.md.
+- For more detaild information about the problem please check [PROBLEM.md](https://github.com/nkanyang/java/blob/master/toyrobot/PROBLEM.md).
 
 
 Project Build, Test and Package
