@@ -1,6 +1,18 @@
 package com.codetest.toyrobot.game;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Robot {
+    private static Map<Direction, Position> offsetMap = new HashMap<Direction, Position>();
+
+    static {
+        offsetMap.put(Direction.NORTH, new Position(0, 1));
+        offsetMap.put(Direction.EAST, new Position(1, 0));
+        offsetMap.put(Direction.SOUTH, new Position(0, -1));
+        offsetMap.put(Direction.WEST, new Position(-1, 0));
+    }
+
     private Position position;
     private Direction direction;
 
@@ -29,26 +41,8 @@ public class Robot {
      * Returns the next position based on current position(x,y) and current direction
      */
     public Position getNextPosition() {
-        int nextX = this.position.getX();
-        int nextY = this.position.getY();
-
-        switch (this.direction) {
-            case NORTH:
-                nextY++;
-                break;
-            case EAST:
-                nextX++;
-                break;
-            case SOUTH:
-                nextY--;
-                break;
-            case WEST:
-                nextX--;
-                break;
-            default:
-                throw new IllegalStateException("Direction unknown" + this.direction);
-        }
-        return new Position(nextX, nextY);
+        Position offset = offsetMap.get(this.direction);
+        return position.getNewPosition(offset);
     }
 
     public boolean isOnBoard() {

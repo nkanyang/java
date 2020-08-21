@@ -17,6 +17,10 @@ public class Position {
         return y;
     }
 
+    public Position getNewPosition(Position offset) {
+        return new Position(this.x + offset.getX(), this.y + offset.getY());
+    }
+
     @Override
     public String toString() {
         return this.x + "," + this.y;
