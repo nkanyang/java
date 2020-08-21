@@ -88,4 +88,7 @@ Use "--log" or "-l" option if you want to get log about how the simulator works
 
 Test Coverage
 -----------
-to be added ....
+Test Coverage
+![Test Coverage](https://github.com/nkanyang/java/blob/master/toyrobot/image/testCoverage.jpg)
+
+
