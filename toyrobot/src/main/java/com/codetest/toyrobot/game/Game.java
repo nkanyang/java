@@ -1,8 +1,7 @@
 package com.codetest.toyrobot.game;
 
-import com.codetest.toyrobot.command.Command;
+import com.codetest.toyrobot.commands.Command;
 import com.codetest.toyrobot.exceptions.RobotException;
-
 import org.apache.log4j.Logger;
 
 public class Game {
@@ -15,16 +14,11 @@ public class Game {
         this.robot = new Robot();
     }
 
-    /**
-     * Execute the command given by argument
-     *
-     * Note:If the command can not be execute, just ignore it.
-     */
-    public void executeCommand(Command command){
-        try{
+    public void executeCommand(Command command) {
+        try {
             command.execute(this.robot, this.board);
             logger.info(command.toString() + ": Command executed successfully.");
-        }catch (RobotException e){
+        } catch (RobotException e) {
             logger.error(e.message());
         }
     }

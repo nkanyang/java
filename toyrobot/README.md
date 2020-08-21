@@ -35,13 +35,13 @@ mvn package
 
 How To Run
 -----------
-The artifact "toyrobot-1.0.jar" of the simulator can be found in the zip package in direcotory bin. It can also be build in project( in directory target)
+The artifact "toyrobot.jar" of the simulator can be found in the zip package in direcotory bin. It can also be build in project( in directory target)
 
 Run the jar file as below: it will show the help message
 
 ```
-# java -jar toyrobot-1.0.jar 
-Usage: java -jar toyrobot-1.0 <fileName> [options]
+# java -jar toyrobot.jar 
+Usage: java -jar toyrobot <fileName> [options]
 
 options: 
     -l, --log          Show log of the execution of the toy robot simulator
@@ -61,13 +61,13 @@ REPORT
 
 Specify the file name (include path if not in the same directory) when invoke the app
 ```
-# target java -jar toyrobot-1.0.jar commands.txt        
+# java -jar toyrobot.jar commands.txt        
 3,3,NORTH
 ```
   
 Use "--log" or "-l" option if you want to get log about how the simulator works
 ```
-# java -jar toyrobot-1.0.jar commands.txt -l
+# java -jar toyrobot.jar commands.txt -l
 2020-08-18 21:13:18 INFO  root:41 - Begin parsing commands from file /Users/jessie/toyrobot/commands.txt
 2020-08-18 21:13:18 INFO  root:50 - PLACE 1,2,EAST is parsed successfully.
 2020-08-18 21:13:18 INFO  root:50 - MOVE is parsed successfully.

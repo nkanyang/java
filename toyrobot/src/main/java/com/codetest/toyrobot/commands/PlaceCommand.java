@@ -1,10 +1,13 @@
-package com.codetest.toyrobot.command;
+package com.codetest.toyrobot.commands;
 
 import com.codetest.toyrobot.exceptions.InvalidPositionException;
 import com.codetest.toyrobot.exceptions.RobotException;
-import com.codetest.toyrobot.game.*;
+import com.codetest.toyrobot.game.Board;
+import com.codetest.toyrobot.game.Direction;
+import com.codetest.toyrobot.game.Position;
+import com.codetest.toyrobot.game.Robot;
 
-public class PlaceCommand implements Command{
+public class PlaceCommand implements Command {
     private String command = "PLACE";
     private Position position;
     private Direction direction;
@@ -19,10 +22,11 @@ public class PlaceCommand implements Command{
         if (!board.isValidPosition(position)) {
             throw new InvalidPositionException(command, position.toString());
         }
-        robot.setPlace(this.position,this.direction);
+        robot.setPlace(this.position, this.direction);
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.command + " " + this.position + "," + this.direction;
     }
 }

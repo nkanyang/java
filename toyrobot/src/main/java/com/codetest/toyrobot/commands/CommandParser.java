@@ -1,7 +1,6 @@
-package com.codetest.toyrobot.command;
+package com.codetest.toyrobot.commands;
 
 import com.codetest.toyrobot.game.Direction;
-import com.codetest.toyrobot.game.Game;
 import com.codetest.toyrobot.game.Position;
 import org.apache.log4j.Logger;
 
@@ -9,13 +8,15 @@ public class CommandParser {
     final static Logger logger = Logger.getLogger(CommandParser.class.getName());
 
     /**
-     * Parse the String given by argument and return an object of Command
+     * parse the string given, if it contains a valid command then
+     * create an instance of corresponding Command
      * <p>
-     * Note:If there is more arguments than needed in the string, it won't affect the parser;
+     * Note:
+     * If there is more arguments than needed at the end of the string separated by blank,
+     * it won't affect the parser;
      *
-     * @param commandString the string contains a command
-     * @return Command: if the string given is a valid command
-     * null:  if the string given is not valid command
+     * @param commandString the string to be parsed
+     * @return Command: if the string given contains a valid command; null: if the string given is not valid command
      */
     public Command buildFromString(String commandString) {
         String[] tempArr = commandString.split(" ");
@@ -44,6 +45,17 @@ public class CommandParser {
         }
     }
 
+    /**
+     * parse the string given, if it contains valid arguments for position and direction
+     * then create an instance of PlaceCommand
+     * <p>
+     * Note:
+     * If there is more arguments than needed at the end of the string separated by comma,
+     * it won't affect the result;
+     *
+     * @param input the string to be parsed
+     * @return PlaceCommand: if the string given contains a valid command; null: if the string given is not valid command
+     */
     public PlaceCommand buildPlaceCommand(String input) {
         if (input == null) {
             return null;

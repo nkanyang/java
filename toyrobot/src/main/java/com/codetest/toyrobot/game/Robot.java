@@ -54,4 +54,12 @@ public class Robot {
     public boolean isOnBoard() {
         return (this.position != null && this.direction != null);
     }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
 }

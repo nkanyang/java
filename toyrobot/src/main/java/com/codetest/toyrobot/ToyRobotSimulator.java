@@ -1,7 +1,7 @@
 package com.codetest.toyrobot;
 
-import com.codetest.toyrobot.command.Command;
-import com.codetest.toyrobot.command.CommandParser;
+import com.codetest.toyrobot.commands.Command;
+import com.codetest.toyrobot.commands.CommandParser;
 import com.codetest.toyrobot.game.Game;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -21,10 +21,10 @@ public class ToyRobotSimulator {
             System.exit(0);
         }
 
-        disableLogging();
+        logger.setLevel(Level.OFF);
         if (args.length == 2) {
             if ("--log".equals(args[1]) || "-l".equals(args[1])) {
-                enableLogging();
+                logger.setLevel(Level.ALL);
             } else {
                 showHelpInfo();
                 System.exit(1);
@@ -61,16 +61,8 @@ public class ToyRobotSimulator {
         }
     }
 
-    public static void disableLogging() {
-        logger.setLevel(Level.OFF);
-    }
-
-    public static void enableLogging() {
-        logger.setLevel(Level.ALL);
-    }
-
     public static void showHelpInfo() {
-        String helpInfo = "Usage: java -jar toyrobot-1.0 <fileName> [options]\n"
+        String helpInfo = "Usage: java -jar toyrobot.jar <fileName> [options]\n"
                 + "\n"
                 + "options: \n"
                 + "    -l, --log          Show log of the execution of the toy robot simulator\n";

@@ -1,18 +1,18 @@
 package com.codetest.toyrobot;
 
-import com.codetest.toyrobot.ToyRobotSimulator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ToyRobotSimulatorTest {
     private final PrintStream systemOut = System.out;
-    private ByteArrayOutputStream testOut;
     private final String path = System.getProperty("user.dir") + "/src/test/resources/";
+    private ByteArrayOutputStream testOut;
 
     @BeforeEach
     public void setUpOutput() {
@@ -26,22 +26,22 @@ public class ToyRobotSimulatorTest {
     }
 
     @Test
-    public void testMain_file1(){
+    public void testToyRobotSimulator_whenMoveAfterPlace_thenOk() {
         String fileName = this.path + "test1.txt";
         ToyRobotSimulator.main(new String[]{fileName});
         assertEquals("0,1,NORTH\n", testOut.toString());
     }
+
     @Test
-    public void testMain_file2(){
+    public void testToyRobotSimulator_whenTurnLeftAfterPlace_thenOk() {
         String fileName = this.path + "test2.txt";
         ToyRobotSimulator.main(new String[]{fileName});
-        assertEquals("0,0,WEST\n", testOut.toString());
     }
+
     @Test
-    public void testMain_file3(){
+    public void testToyRobotSimulator_whenSeriesOfCommandExecuteAfterPlace_thenOk() {
         String fileName = this.path + "test3.txt";
         ToyRobotSimulator.main(new String[]{fileName});
         assertEquals("3,3,NORTH\n", testOut.toString());
     }
-
 }
