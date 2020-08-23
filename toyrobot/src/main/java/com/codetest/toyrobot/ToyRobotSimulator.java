@@ -1,71 +1,62 @@
 package com.codetest.toyrobot;
 
-import com.codetest.toyrobot.commands.Command;
-import com.codetest.toyrobot.commands.CommandParser;
 import com.codetest.toyrobot.game.Game;
+import com.codetest.toyrobot.input.CommandInput;
+import com.codetest.toyrobot.input.ConsoleInput;
+import com.codetest.toyrobot.input.FileInput;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ToyRobotSimulator {
     final static org.apache.log4j.Logger logger = Logger.getRootLogger();
 
     public static void main(String[] args) {
-        if (args.length != 1 && args.length != 2) {
+        if (args.length > 2) {
+            showHelpInfo();
+            System.exit(0);
+        }
+        if (args.length == 2 && !"--log".equals(args[1]) && !"-l".equals(args[1])) {
             showHelpInfo();
             System.exit(0);
         }
 
-        logger.setLevel(Level.OFF);
-        if (args.length == 2) {
-            if ("--log".equals(args[1]) || "-l".equals(args[1])) {
-                logger.setLevel(Level.ALL);
-            } else {
-                showHelpInfo();
-                System.exit(1);
-            }
+        CommandInput input = getInput(args);
+        if (input == null) {
+            return;
         }
+        Game toyRobot = new Game(5, 5);
+        input.run(toyRobot);
+    }
 
-        String fileName = args[0];
-        FileReader commandFile = null;
-        try {
-            commandFile = new FileReader(fileName);
-            BufferedReader br = new BufferedReader(commandFile);
-            CommandParser commandParser = new CommandParser();
-
-            logger.info("Begin parsing commands from file " + fileName);
-            List<Command> commands = new ArrayList<>();
-            String line;
-            while ((line = br.readLine()) != null) {
-                Command command = commandParser.buildFromString(line);
-                if (command == null) {
-                    logger.error(line + " is not a valid command.Skipped");
-                    continue;
+    public static CommandInput getInput(String[] args) {
+        if (args.length == 0) {
+            return new ConsoleInput();
+        } else {
+            String fileName = args[0];
+            try {
+                FileReader commandFile = new FileReader(fileName);
+                BufferedReader br = new BufferedReader(commandFile);
+                if (args.length == 2) {
+                    logger.setLevel(Level.ALL);
                 }
-                logger.info(line + " is parsed successfully.");
-                commands.add(command);
+                return new FileInput(br);
+            } catch (IOException e) {
+                System.out.println("Can not find file: " + fileName);
+                return null;
             }
-            logger.info("Done parsing commands.");
-
-            logger.info("Start game, execute all commands ...");
-            Game toyRobot = new Game(5, 5);
-            commands.forEach(toyRobot::executeCommand);
-        } catch (IOException e) {
-            System.out.println("Can not find file: " + fileName);
-            System.exit(1);
         }
     }
 
     public static void showHelpInfo() {
-        String helpInfo = "Usage: java -jar toyrobot.jar <fileName> [options]\n"
+        String helpInfo = "Usage: java -jar toyrobot.jar [<fileName> [options]]\n"
                 + "\n"
+                + "fileName:              Specify the file with commands;If not given, read command from console\n"
                 + "options: \n"
-                + "    -l, --log          Show log of the execution of the toy robot simulator\n";
+                + "    -l, --log          Show log of the execution of the toy robot simulator when use file as input source\n";
         System.out.println(helpInfo);
     }
 }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Robot {
-    private static Map<Direction, Position> offsetMap = new HashMap<Direction, Position>();
+    private static final Map<Direction, Position> offsetMap = new HashMap<Direction, Position>();
 
     static {
         offsetMap.put(Direction.NORTH, new Position(0, 1));
